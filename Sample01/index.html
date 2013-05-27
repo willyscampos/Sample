@@ -24,7 +24,7 @@
 				<!--<a href="#todo-detail" ng-click="newTodo()" data-icon="add" class="ui-btn-right">New</a>-->
 			</div>
 			<div data-role="content">
-				
+
 				<button ng-click="TelaCadastro()">Cadastro</button>
 				<button ng-click="Experimente()">Experimente</button>
 				<button ng-click="TelaLogin()">Login</button>
@@ -112,6 +112,17 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<div data-role="fieldcontain">
+					<label for="DicaDesc">Compartilhe sua dica</label>
+					<input type="text" id="DicaDesc" name="DicaDesc" ng-model="objeto.DicaDesc"  />
+				</div>
+				{{objeto.DicaDesc}}
+				<div align="right">
+					<div data-role="controlgroup" style="display:inline-block;" data-type="horizontal">
+						<button data-theme="a" type="button" ng-click="saveDica()">Registre aqui</button>
+					</div>
+				</div>
 
 			</div>
 			<div data-role="footer" data-position="fixed">

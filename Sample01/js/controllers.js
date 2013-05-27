@@ -1,5 +1,6 @@
 function TodoController($scope, Todo, Dica, Usuario) {
-	$scope.Usuario = { Nome: '', Email: '', Senha: '' };    		    
+	$scope.Usuario = { Nome: '', Email: '', Senha: '' };    
+    $scope.objeto = { DicaDesc: '' };              
 	$scope.todos = Todo.query();
 
 	$scope.selectTodo = function (id) {
@@ -15,7 +16,7 @@ function TodoController($scope, Todo, Dica, Usuario) {
 	}
     
 	$scope.TelaLogin = function () {
-        $scope.Usuario = new Usuario();
+		$scope.Usuario = new Usuario();
 		$.mobile.changePage('#login');
 	}
     
@@ -27,7 +28,7 @@ function TodoController($scope, Todo, Dica, Usuario) {
 		$.mobile.changePage('#dicas');
   
 		$scope.ListaDica = Dica.all({
-			limit: 3,
+			limit: 10,
 			sort: {
 				_id: -1
 			}
@@ -53,12 +54,25 @@ function TodoController($scope, Todo, Dica, Usuario) {
 		$.mobile.changePage('#todo-list');
 	}
     
+    $scope.saveDica = function () {		
+		oDica = new Dica();
+        console.log($scope.objeto.DicaDesc);        
+		oDica.DicaDesc = $scope.objeto.DicaDesc;        
+		oDica.$saveOrUpdate(DicaSuccess);
+        oDica = new Dica();
+	}
+      
+	function DicaSuccess() {				
+		AtualizaDicas(5);        
+	}
+    
 	function retorno(result) {		
-		if (result == 0) {
+		if (result == 1) {
 			$.mobile.changePage('#dicas');
+            AtualizaDicas(7);
 		}
 		else {
-			$.mobile.changePage('#teste-list');
+			$.mobile.changePage('#todo-list');
 		}
 	}
 	
@@ -77,6 +91,15 @@ function TodoController($scope, Todo, Dica, Usuario) {
 	$scope.completeTodo = function (id) {
 		Todo.delete({todoId: id}, function () {
 			$scope.todos = _.without($scope.todos, $scope.todo);
+		});                
+	}
+    
+	function AtualizaDicas(qtd) {
+		$scope.ListaDica = Dica.all({
+			limit: qtd,
+			sort: {
+				_id: -1
+			}
 		});
 	}
 }
