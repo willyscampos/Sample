@@ -57,8 +57,10 @@
     <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.js" />
     <Content Include="index.html" />
     <Content Include="css\index.css" />
+    <Content Include="js\controllers.js" />
     <Content Include="js\index.js" />
     <Content Include="img\logo.png" />
     <Content Include="img\cordova.png" />
@@ -70,6 +72,8 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+    <Content Include="js\services.js" />
+    <Content Include="package.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>
