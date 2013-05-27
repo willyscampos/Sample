@@ -1,6 +1,5 @@
 function TodoController($scope, Todo, Dica, Usuario) {
-    
-    $scope.Usuario = { Email: '', Senha: '' };    		    
+	$scope.Usuario = { Nome: '', Email: '', Senha: '' };    		    
 	$scope.todos = Todo.query();
 
 	$scope.selectTodo = function (id) {
@@ -16,7 +15,12 @@ function TodoController($scope, Todo, Dica, Usuario) {
 	}
     
 	$scope.TelaLogin = function () {
+        $scope.Usuario = new Usuario();
 		$.mobile.changePage('#login');
+	}
+    
+	$scope.TelaCadastro = function () {
+		$.mobile.changePage('#cadastro');
 	}
     
 	$scope.Experimente = function () {
@@ -35,6 +39,18 @@ function TodoController($scope, Todo, Dica, Usuario) {
 			Email: $scope.Usuario.Email,
 			Senha: $scope.Usuario.Senha
 		}, retorno);                				
+	}
+    
+	$scope.SalvarUsuario = function () {		
+		oUsuario = new Usuario();
+		oUsuario.Nome = $scope.Usuario.Nome;        
+		oUsuario.Email = $scope.Usuario.Email;
+		oUsuario.Senha = $scope.Usuario.Senha;
+		oUsuario.$saveOrUpdate(changeSuccess);
+	}
+      
+	function changeSuccess() {				
+		$.mobile.changePage('#todo-list');
 	}
     
 	function retorno(result) {		
@@ -59,8 +75,7 @@ function TodoController($scope, Todo, Dica, Usuario) {
 	}
 
 	$scope.completeTodo = function (id) {
-		Todo
-		.delete({todoId: id}, function () {
+		Todo.delete({todoId: id}, function () {
 			$scope.todos = _.without($scope.todos, $scope.todo);
 		});
 	}

@@ -20,21 +20,17 @@
 		<!--Todo List Page-->
 		<div id="todo-list" data-role="page">
 			<div data-role="header">
-				<h1>Angular Todo</h1>
-				<a href="#todo-detail" ng-click="newTodo()" data-icon="add" class="ui-btn-right">New</a>
+				<h1>Exemplo</h1>
+				<!--<a href="#todo-detail" ng-click="newTodo()" data-icon="add" class="ui-btn-right">New</a>-->
 			</div>
 			<div data-role="content">
-				<ul data-role="listview" data-filter="true">
-					<li ng-repeat="todo in todos">
-						<a href="#todo-detail" data-transition="slide" ng-click="selectTodo(todo._id)" value="{{todo._id}}">{{todo.description}}</a>
-					</li>
-				</ul>
-				<button ng-click="teste()">teste</button>
+				
+				<button ng-click="TelaCadastro()">Cadastro</button>
 				<button ng-click="Experimente()">Experimente</button>
 				<button ng-click="TelaLogin()">Login</button>
 			</div>
 			<div data-role="footer" data-position="fixed">
-				<p>{{todos.length}} Tasks Remaining</p>
+				<p>{{todos.length}} Tasks </p>
 			</div>
 		</div>
 		<!--Todo Detail Page-->
@@ -144,7 +140,7 @@
 
 					<div align="center">
 						<div data-role="controlgroup" style="display:inline-block;" data-type="horizontal">
-							<button data-theme="a" type="button" ng-click="doLogin()">Entrar</button>							
+							<button data-theme="a" type="button" ng-click="doLogin()">Entrar</button>
 						</div>
 					</div>
 				</form>
@@ -152,6 +148,42 @@
 			</div>
 			<div data-role="footer" data-position="fixed">
 				<p>login</p>
+			</div>
+		</div>
+
+		<div id="cadastro" data-role="page">
+			<div data-role="header">
+				<a href="#" data-icon="back" data-rel="back">Voltar</a>
+				<h1>Cadastro</h1>
+			</div>
+			<div data-role="content">
+				<h1>Cadastro!</h1>
+				<form id="frmLogin" class="validate">
+
+					<div data-role="fieldcontain">
+						<label for="Nome">Nome: </label>
+						<input type="text" id="Nome" name="Nome" ng-model="Usuario.Nome" class="required" />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="Email">Email: </label>
+						<input type="text" id="Email" name="Email" ng-model="Usuario.Email" class="required email" />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="Senha">Senha: </label>
+						<input type="password" id="Senha" name="Senha" ng-model="Usuario.Senha" class="required" />
+					</div>
+
+					<div align="center">
+						<div data-role="controlgroup" style="display:inline-block;" data-type="horizontal">
+							<button data-theme="a" type="button" ng-click="SalvarUsuario()">Registrar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<p>Exemplo</p>
 			</div>
 		</div>
 
